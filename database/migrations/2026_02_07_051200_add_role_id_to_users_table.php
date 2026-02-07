@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeignIdFor(\App\Models\Role::class);
+            $table->dropColumn('role_id');
         });
     }
 };
