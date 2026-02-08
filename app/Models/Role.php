@@ -10,7 +10,7 @@ class Role extends Model
 {
     //
     use HasFactory;
-
+    // nambah hijau aja
     protected $table = 'roles';
     protected $fillable = [
         'name'
