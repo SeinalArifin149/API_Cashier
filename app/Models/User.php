@@ -40,4 +40,7 @@ class User extends Authenticatable
     {
         return $this->role === 'kasir';
     }
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
 }
