@@ -22,5 +22,15 @@ class Product extends Model
     public function stock() {
         return $this->hasMany(Stock::class);
     }
+    public function categories() {
+        return $this->belongsTo(Categories::class);
+    }
+
+    // public function product() {
+    //     return $this->hasMany(Product::class).
+    // }
+    // public function product() {
+    //     return $this->belongTo(Product::class).
+    // }
 
 }
