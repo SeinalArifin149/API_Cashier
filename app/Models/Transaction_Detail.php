@@ -8,7 +8,7 @@ use function Laravel\Prompts\table;
 class Transaction_Detail extends Model
 {
     //
-    protected $table = 'transactions_details';
+    protected $table = 'transaction_details';
     protected $fillable = [
         'transactions_id',
         'product_id',
