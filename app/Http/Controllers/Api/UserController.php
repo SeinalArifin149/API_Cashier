@@ -14,4 +14,39 @@ class UserController extends Controller
         $user= User::all();
         return response()->json(User::all());
     }
+
+    public function store(request $request) {
+        $validate = $request->validate (
+            [
+                'name'     => 'required|string|max:255',
+                'email'    => 'required|email|unique:users,email',
+                'password' => ['required', Password::min(6)],
+                'role'     => 'required|in:admin,kasir,gudang',
+            ]);
+            $user= User::create($validate);
+
+            return response()->json([
+            'status'  => 'success',
+            'message' => 'User berhasil dibuat',
+            'data'    => $user
+            ], 201);
+            
+        
+
+    }
+    public function show($id) {
+        $user = User::find($id);
+
+        if(!$user){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User tidak ditemukan'
+            ],404);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data'=> $user
+        ]);
+    }
 }
