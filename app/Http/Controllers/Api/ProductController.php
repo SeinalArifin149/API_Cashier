@@ -17,13 +17,17 @@ class ProductController extends Controller
     public function store(request $request) {
         $validate = $request->validate (
             [
-                
+                'category_id' => 'required|exists:categories,id',
+                'name' => 'required|string|max:255',
+                'sku' => 'required|string|max:100|unique:products,sku',
+                'price' => 'required|numeric|min:0',
+                'stock' => 'required|numeric|min:0'
             ]);
             $product = Product::create($validate);
 
             return response()->json([
             'status'  => 'success',
-            'message' => 'User berhasil dibuat',
+            'message' => 'Product berhasil di masukan',
             'data'    => $product
             ], 201);
             
