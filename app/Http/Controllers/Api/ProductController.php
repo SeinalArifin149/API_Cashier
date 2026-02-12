@@ -42,4 +42,25 @@ class ProductController extends Controller
             ],404);
         }
         }
+
+    public function destroy($id){
+        $product = Product::find($id);
+
+        if(!$product){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'product tidak ditemukan'
+                ], 404);
+                }
+
+            
+            $product->delete($id);
+            return response()->json ([
+                    
+                'status' => 'error',
+                'message' => 'product berhasil dihapus'
+            ]);
+    }
+
+
 }
