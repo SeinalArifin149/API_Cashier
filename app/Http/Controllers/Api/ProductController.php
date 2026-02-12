@@ -30,8 +30,16 @@ class ProductController extends Controller
             'message' => 'Product berhasil di masukan',
             'data'    => $product
             ], 201);
-            
-        
+            }
 
-    }
+    public function show($id) {
+        $product = Product::find($id);
+
+        if(!$product){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'product tidak ditemukan'
+            ],404);
+        }
+        }
 }
