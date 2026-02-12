@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use function Laravel\Prompts\table;
 
-class Transaction_Detail extends Model
+class TransactionDetail extends Model
 {
     //
     protected $table = 'transaction_details';
