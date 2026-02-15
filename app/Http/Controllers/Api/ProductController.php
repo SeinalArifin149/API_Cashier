@@ -62,5 +62,33 @@ class ProductController extends Controller
             ]);
     }
 
+     public function update(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'product tidak ditemukan'
+            ], 404);
+        }
+
+        $validated = $request->validate([
+            'category_id' => 'required|exists:categories,id',
+                'name' => 'required|string|max:255',
+                'sku' => 'required|string|max:100|unique:products,sku',
+                'price' => 'required|numeric|min:0',
+                'stock' => 'required|numeric|min:0'
+        ]);
+
+        $product->update($validated);
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'product berhasil diupdate',
+            'data'    => $product
+        ]);
+    }
+
 
 }
