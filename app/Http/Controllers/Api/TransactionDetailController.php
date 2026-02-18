@@ -11,7 +11,8 @@ class TransactionDetailController extends Controller
 {
     public function index()
     {
-        $details = TransactionDetail::with(['trancation', 'product'])->get();
+        $details = TransactionDetail::with(['transaction
+        ', 'product'])->get();
 
         return response()->json($details);
     }
@@ -41,7 +42,8 @@ class TransactionDetailController extends Controller
 
     public function show($id)
     {
-        $detail = TransactionDetail::with(['trancation', 'product'])->find($id);
+        $detail = TransactionDetail::with(['transaction
+        ', 'product'])->find($id);
 
         if (!$detail) {
             return response()->json([
